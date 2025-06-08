@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-900;
+  }
+
+  input[type="range"] {
+    @apply appearance-none bg-gray-700 h-2 rounded-lg;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none w-6 h-6 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full cursor-pointer transition-all hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/50;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    @apply appearance-none w-6 h-6 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full cursor-pointer transition-all hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/50;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    @apply relative;
+    background: linear-gradient(to right, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1));
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    @apply ring-2 ring-cyan-500/50;
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 5px rgba(6, 182, 212, 0.2),
+                  0 0 10px rgba(6, 182, 212, 0.2),
+                  0 0 15px rgba(6, 182, 212, 0.2);
+    }
+    to {
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.4),
+                  0 0 20px rgba(6, 182, 212, 0.4),
+                  0 0 30px rgba(6, 182, 212, 0.4);
+    }
+  }
+
+  .glow-effect {
+    @apply relative;
+  }
+
+  .glow-effect::before {
+    @apply content-[''] absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg blur opacity-30 transition-opacity group-hover:opacity-100;
+  }
+
+  .glow-effect::after {
+    @apply content-[''] absolute inset-0 bg-gray-800 rounded-lg;
+  }
+
+  .glow-effect > * {
+    @apply relative z-10;
+  }
+
+  .input-glow {
+    @apply transition-all duration-300;
+  }
+
+  .input-glow:focus {
+    @apply outline-none;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.5),
+                0 0 30px rgba(6, 182, 212, 0.3),
+                0 0 45px rgba(6, 182, 212, 0.1);
+  }
+}
