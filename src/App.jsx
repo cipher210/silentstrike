@@ -309,35 +309,33 @@ function App() {
 const handleButtonClick = useCallback(
   async (label) => {
     if (label === 'connect') {
-      const socket = new WebSocket('ws://192.168.0.107:24124');
+      const socket = new WebSocket('ws://192.168.0.107:24124')
 
       socket.onopen = () => {
-        setWs(socket);
-        console.log('WebSocket connected');
-        socket.send("connect"); // <- use `socket`, not `ws`
-      };
-
+        setWs(socket)
+        
+        console.log('WebSocket connected')
+        ws.send("connect")
+      }
       socket.onclose = () => {
-        setWs(null);
-        console.log('WebSocket disconnected');
-      };
-
+        setWs(null)
+        console.log('WebSocket disconnected')
+      }
       socket.onerror = (err) => {
-        setWs(null);
-        console.log('WebSocket error');
-      };
+        setWs(null)
+        console.log('WebSocket error')
+      }
     } else {
       if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(label);
-        console.log(`Sent message: ${label}`);
+        ws.send(label)
+        console.log(`Sent message: ${label}`)
       } else {
-        console.log('WebSocket is not connected');
+        console.log('WebSocket is not connected')
       }
     }
   },
   [ws]
-);
-
+)
 
 
 
